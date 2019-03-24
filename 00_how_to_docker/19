@@ -1,0 +1,4 @@
+docker run -it --name Abathur -v ~/Abathur:/root -p 3000:3000 python:2-slim python
+docker exec Abathur pip install Flask
+<h1>Hello World</h1>
+curl http://localhost:3000
