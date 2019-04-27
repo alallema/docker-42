@@ -1,7 +1,7 @@
-# Use an official Alpine runtime as a parent image
+# Use an official Debian runtime as a parent image
 FROM debian
 
-# Set the working directory to /app
+# Set the working directory
 WORKDIR /home/teamspeak
 
 # Install needed packages
@@ -25,6 +25,7 @@ ENV TS3SERVER_LICENSE=accept
 #ENTRYPOINT sh ts3server_startscript.sh start
 ENTRYPOINT sh ts3server_minimal_runscript.sh
 
+# Follow steps to launch docker container
 # Build
 # docker build -t ex01 .
 # Run
