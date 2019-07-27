@@ -20,11 +20,11 @@ In order to bring up:
 
 ## Dependencies
 
-# Golang
+### Golang
 * go-redis
 * gorilla
 
-# Python
+### Python
 * pandas
 * redis
 
