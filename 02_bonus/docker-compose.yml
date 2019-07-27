@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+    redis:
+        image: redis
+        container_name: redis
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+            - ./redis:/data
+        environment:
+            - REDIS_URL=redis://redis:6379
+        entrypoint: redis-server --appendonly yes
+        restart: always
+
+    api:
+        build: ./api/
+        command: ["go", "run", "main.go", "router.go"]
+        volumes:
+            - ./api:/go/src/api
+        ports:
+            - "8080:8080"
+        links:
+            - redis
+
+    collector:
+        build: ./collector/
+        command: [ "python", "./add_user_table.py" ]
+        volumes:
+            - ./collector:/usr/src/app
+        links:
+            - redis
